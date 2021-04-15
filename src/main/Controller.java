@@ -1,12 +1,17 @@
 package main;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 import main.models.*;
 
 import java.util.ArrayList;
@@ -22,6 +27,7 @@ public class Controller implements Observer {
     private ArrayList<Circle> recurso = new ArrayList<>();
     private Object o1 = new Object();
     private Object o2 = new Object();
+    Timeline timer;
 
 
     @FXML
@@ -34,6 +40,14 @@ public class Controller implements Observer {
     private Button btnIniciar;
 
     @FXML
+    private Button btnDetener;
+
+    @FXML
+    void btnDetenerOnMouseClicked(MouseEvent event) {
+        timer.stop();
+    }
+
+    @FXML
     void btnSalirOnMouseClicked(MouseEvent event) {
         Platform.exit();
         System.exit(1);
@@ -42,21 +56,29 @@ public class Controller implements Observer {
     @FXML
     void btnIniciarOnMouseClicked(MouseEvent event) {
         Monitor monitor = new Monitor();
-        int x=0;
-        while (x<50){
-            if (random.nextInt(2) == 0) {
-                Lector lector = new Lector(monitor);
-                lector.addObserver(this);
-                new Thread(lector, String.valueOf(x)).start();
-            }
-            else {
-                Escritor escritor = new Escritor(monitor);
-                escritor.addObserver(this);
-                new Thread(escritor, String.valueOf(x)).start();
-            }
-            x++;
-        }
+        Random random = new Random(System.currentTimeMillis());
 
+        timer = new Timeline(
+                new KeyFrame(Duration.millis(random.nextInt(400)+100),
+                        new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent actionEvent) {
+                                switch(random.nextInt(2)){
+                                    case 0:
+                                        Lector lector = new Lector(monitor);
+                                        lector.addObserver(Controller.this);
+                                        new Thread(lector).start();
+                                        break;
+                                    case 1:
+                                        Escritor escritor = new Escritor(monitor);
+                                        escritor.addObserver(Controller.this);
+                                        new Thread(escritor).start();
+                                }
+                            }
+                        })
+        );
+        timer.setCycleCount(Timeline.INDEFINITE);
+        timer.play();
     }
 
     private void addLector(){

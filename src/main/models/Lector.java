@@ -16,7 +16,7 @@ public class Lector extends Observable implements Runnable{
         this.setChanged();
         this.notifyObservers("1");
 
-        monitor.abrirLectura();
+        monitor.iniciarLectura();
 
         this.setChanged();
         this.notifyObservers("2");
@@ -26,8 +26,7 @@ public class Lector extends Observable implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        monitor.cerrarLectura();
+        monitor.finalizarLectura();
 
         this.setChanged();
         this.notifyObservers("3");

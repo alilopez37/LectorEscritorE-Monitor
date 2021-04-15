@@ -14,7 +14,8 @@ public class Escritor extends Observable implements Runnable{
     public void run(){
         this.setChanged();
         this.notifyObservers("1");
-        monitor.abrirEscritura();
+
+        monitor.iniciarEscritura();
         this.setChanged();
         this.notifyObservers("2");
         System.out.println(Thread.currentThread().getName() + ": ESCRIBIENDO");
@@ -23,7 +24,7 @@ public class Escritor extends Observable implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        monitor.cerrarEscritura();
+        monitor.finalizarEscritura();
         this.setChanged();
         this.notifyObservers("3");
     }

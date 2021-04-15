@@ -6,9 +6,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
    <children>
-      <Button fx:id="btnSalir" layoutX="211.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#btnSalirOnMouseClicked" prefHeight="27.0" prefWidth="300.0" text="Salir" />
+      <Button fx:id="btnSalir" layoutX="211.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#btnSalirOnMouseClicked" prefHeight="27.0" prefWidth="300.0" text="Salir" />
       <Button fx:id="btnIniciar" layoutX="211.0" layoutY="374.0" mnemonicParsing="false" onMouseClicked="#btnIniciarOnMouseClicked" prefHeight="27.0" prefWidth="300.0" text="Iniciar" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="410.0" layoutX="10.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="410.0" layoutX="110.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
@@ -28,5 +28,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
+      <Button fx:id="btnDetener" layoutX="211.0" layoutY="404.0" mnemonicParsing="false" onMouseClicked="#btnDetenerOnMouseClicked" prefHeight="27.0" prefWidth="300.0" text="Detener" />
    </children>
 </AnchorPane>
